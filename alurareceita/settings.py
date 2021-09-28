@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
-import os
+import os, sys
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -81,9 +81,9 @@ WSGI_APPLICATION = 'alurareceita.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'alura_receita',
+        'NAME': 'gui_receita',
         'USER': 'postgres',
-        'PASSWORD': '123456',
+        'PASSWORD': 'senha123',
         'HOST': 'localhost'
     }
 }
@@ -141,3 +141,6 @@ MESSAGE_TAGS = {
     messages.ERROR: 'danger',
     messages.SUCCESS: 'success',
 }
+
+PROJECT_ROOT = os.path.dirname(__file__)
+sys.path.insert(0, os.path.join(PROJECT_ROOT, '../apps'))

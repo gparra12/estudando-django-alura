@@ -4,6 +4,7 @@ from django.contrib import auth, messages
 from receitas.models import Receita
 
 def cadastro(request):
+    """Verify if method HTTP is POST for security, after that request all the form fields and create a new user in database"""
     if request.method == 'POST':
         nome = request.POST['nome']
         email = request.POST['email']
@@ -31,7 +32,9 @@ def cadastro(request):
     else:
         return render(request,'usuarios/cadastro.html')
 
+
 def login(request):
+    """Verify if the method in HTTPS methos is POST, after that, check if the email and password are in the database"""
     if request.method == 'POST':
         email = request.POST['email']
         senha = request.POST['senha']
@@ -48,9 +51,11 @@ def login(request):
                 return redirect('dashboard')
     return render(request, 'usuarios/login.html')
 
+
 def logout(request):
     auth.logout(request)
     return redirect('index')
+
 
 def dashboard(request):
     if request.user.is_authenticated:
@@ -64,8 +69,10 @@ def dashboard(request):
     else:
         return redirect('index')
 
+
 def campo_vazio(campo):
     return not campo.strip()
+
 
 def senhas_nao_sao_iguais(senha, senha2):
     return senha != senha2
